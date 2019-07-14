@@ -25,14 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        gui/gamewidget.cpp \
         main.cpp \
         gamewidget.cpp
 
 HEADERS += \
-        gamewidget.h
+    core/BaseObject.h \
+    gui/gamewidget.h
 
 FORMS += \
-        gamewidget.ui
+        gamewidget.ui \
+        gui/gamewidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
