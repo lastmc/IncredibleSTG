@@ -27,14 +27,12 @@ CONFIG += c++11
 SOURCES += \
         gui/gamewidget.cpp \
         main.cpp \
-        gamewidget.cpp
 
 HEADERS += \
     core/BaseObject.h \
     gui/gamewidget.h
 
 FORMS += \
-        gamewidget.ui \
         gui/gamewidget.ui
 
 # Default rules for deployment.

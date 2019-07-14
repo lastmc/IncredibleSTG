@@ -18,16 +18,16 @@ public:
 	double vy(){
 		return velocityY;
 	}
-	double setX(double x){
+    void setX(double x){
 		posX=x;
 	}
-	double setY(double y){
+    void setY(double y){
 		posY=y;
 	}
-	double setVx(double vx){
+    void setVx(double vx){
 		velocityX=vx;
 	}
-	double setVy(double vy){
+    void setVy(double vy){
 		velocityY=vy;
 	}
 	virtual ~BaseObject()=0;
