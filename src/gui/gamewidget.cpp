@@ -6,6 +6,7 @@ GameWidget::GameWidget(QWidget *parent) :
     ui(new Ui::GameWidget)
 {
     ui->setupUi(this);
+    setPalette(QPalette(Qt::white));
 }
 
 GameWidget::~GameWidget()

@@ -30,6 +30,8 @@ SOURCES += \
 
 HEADERS += \
     core/BaseObject.h \
+    core/HeroObject.h \
+    core/ToolFunc.h \
     gui/gamewidget.h
 
 FORMS += \
