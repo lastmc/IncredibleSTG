@@ -25,11 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    core/BaseBullet.cpp \
+    core/BaseObject.cpp \
+    core/BaseScene.cpp \
+    core/DirectionBullet.cpp \
+    core/GameScene.cpp \
+    core/HeroObject.cpp \
         gui/gamewidget.cpp \
         main.cpp \
 
 HEADERS += \
+    core/BaseBullet.h \
     core/BaseObject.h \
+    core/BaseScene.h \
+    core/DirectionBullet.h \
+    core/GameScene.h \
     core/HeroObject.h \
     core/ToolFunc.h \
     gui/gamewidget.h
@@ -41,3 +51,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res/resource.qrc

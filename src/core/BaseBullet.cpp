@@ -1,6 +1,9 @@
 #include "BaseBullet.h"
 
-BaseBullet::BaseBullet()
-{
+namespace STG {
+
+    BaseBullet::BaseBullet(){}
+
+    BaseBullet::~BaseBullet(){}
 
 }

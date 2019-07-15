@@ -1,6 +1,7 @@
 #include "BaseScene.h"
 
-BaseScene::BaseScene()
-{
+namespace STG {
+
+    //BaseScene::~BaseScene(){}
 
 }
