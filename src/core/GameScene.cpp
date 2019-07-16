@@ -3,7 +3,7 @@
 
 namespace STG {
 
-    GameScene::GameScene(){
+    GameScene::GameScene():selfBullets(BulletContainer(50,50,500,500)){
         hero=nullptr;
         keyUp=false;
         keyRight=false;
@@ -18,7 +18,7 @@ namespace STG {
     }
 
     void GameScene::addHeroBullet(BaseBullet* b){
-        selfBullets.append(b);
+        selfBullets.addBullet(b);
     }
 
     void GameScene::paint(QPainter* painter){
@@ -27,8 +27,8 @@ namespace STG {
         painter->drawPixmap((int)hero->x(),(int)hero->y(),32,32,heroPic);
         QPixmap bulletPic;
         bulletPic.load(":/pic/hero.ico");
-        for(auto k:selfBullets){
-            painter->drawPixmap((int)k->x(),(int)k->y(),10,10,bulletPic);
+        for(int i=0;i<selfBullets.size();i++){
+            painter->drawPixmap((int)selfBullets[i]->x(),(int)selfBullets[i]->y(),10,10,bulletPic);
         }
     }
 
@@ -81,7 +81,7 @@ namespace STG {
         hero->setVy(-0.2*keyUp+0.2*keyDown);
         hero->move(milliInterval);
         if(keyZ) addHeroBullet(new DirectionBullet(hero->x(),hero->y(),0,-0.6,3));
-        for(auto k:selfBullets) k->move(milliInterval);
+        selfBullets.update(milliInterval);
     }
 
     GameScene::~GameScene(){

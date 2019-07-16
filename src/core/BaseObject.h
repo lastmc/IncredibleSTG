@@ -20,7 +20,7 @@ namespace STG {
         void setY(double y);
         void setVx(double vx);
         void setVy(double vy);
-        virtual void move(int time=1000);//按秒移动
+        virtual void move(int time);//按毫秒移动
 
         //Hit Field
         //为了简化处理，采取圆型碰撞判定

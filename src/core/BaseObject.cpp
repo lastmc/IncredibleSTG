@@ -29,7 +29,7 @@ namespace STG {
         velocityY=vy;
     }
     void BaseObject::move(int time){
-        //按秒移动
+        //按毫秒移动
         posX+=time*velocityX;
         posY+=time*velocityY;
     }

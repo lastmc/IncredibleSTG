@@ -5,13 +5,14 @@
 #include "BaseScene.h"
 #include "BaseBullet.h"
 #include "HeroObject.h"
+#include "BulletContainer.h"
 
 namespace STG {
 
     class GameScene:public BaseScene{
     private:
         HeroObject* hero;
-        QVector<BaseBullet*> selfBullets;
+        BulletContainer selfBullets;
         bool keyUp,keyDown,keyRight,keyLeft,keyZ;
     public:
         GameScene();

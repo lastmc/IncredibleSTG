@@ -28,6 +28,7 @@ SOURCES += \
     core/BaseBullet.cpp \
     core/BaseObject.cpp \
     core/BaseScene.cpp \
+    core/BulletContainer.cpp \
     core/DirectionBullet.cpp \
     core/GameScene.cpp \
     core/HeroObject.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     core/BaseBullet.h \
     core/BaseObject.h \
     core/BaseScene.h \
+    core/BulletContainer.h \
     core/DirectionBullet.h \
     core/GameScene.h \
     core/HeroObject.h \
