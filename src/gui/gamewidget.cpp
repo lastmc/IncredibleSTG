@@ -18,7 +18,7 @@ GameWidget::GameWidget(QWidget *parent) :
     gScene->initHero(new STG::HeroObject());
     scene=gScene;
     timer.setTimerType(Qt::PreciseTimer);
-    timer.setInterval(15);
+    timer.setInterval(10);
     connect(&timer,SIGNAL(timeout()),this,SLOT(repaint()));
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateScene()));
     timer.start();
@@ -31,7 +31,7 @@ GameWidget::~GameWidget()
 }
 
 void GameWidget::updateScene(){
-    scene->update(15);
+    scene->update(10);
 }
 
 void GameWidget::paintEvent(QPaintEvent*){

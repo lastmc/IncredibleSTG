@@ -1,8 +1,10 @@
 #include "HeroObject.h"
+#include "DirectionBullet.h"
+#include "CircleBullet.h"
 
 namespace STG {
 
-    HeroObject::HeroObject(int life,int bomb):BaseObject(),life(life),bomb(bomb){}
+    HeroObject::HeroObject(int life,int bomb,int shootInterval):BaseObject(),life(life),bomb(bomb),shootInterval(shootInterval){}
 
     HeroObject::~HeroObject(){}
 
@@ -14,6 +16,26 @@ namespace STG {
     }
     bool HeroObject::alive() const{
         return life>0;
+    }
+    int HeroObject::getShootInterval() const{
+        return shootInterval;
+    }
+    int HeroObject::getShootCount() const{
+        return shootCount;
+    }
+
+    BulletContainer HeroObject::shoot(){
+        shootCount++;
+        BulletContainer bc;/*
+        bc.addBullet(new DirectionBullet(x(),y(),0,-0.5,3));
+        bc.addBullet(new DirectionBullet(x(),y(),-0.2,-0.5,3));
+        bc.addBullet(new DirectionBullet(x(),y(),0.2,-0.5,3));
+        bc.addBullet(new DirectionBullet(x()-6,y()-20,0,-0.5,3));
+        bc.addBullet(new DirectionBullet(x()-6,y(),0,-0.5,3));
+        bc.addBullet(new DirectionBullet(x()+6,y()-20,0,-0.5,3));
+        bc.addBullet(new DirectionBullet(x()+6,y(),0,-0.5,3));*/
+        bc.addBullet(new CircleBullet(x(),y(),0,-100,0.5,3));
+        return bc;
     }
 
 }

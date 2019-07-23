@@ -50,6 +50,4 @@ namespace STG {
         return dist(other)<hitRadius+other.hitR();
     }
 
-    BaseObject::~BaseObject(){}
-
 }

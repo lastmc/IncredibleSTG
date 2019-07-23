@@ -25,24 +25,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    core/BaseBullet.cpp \
+    core/BaseEnemyObject.cpp \
+    core/BaseMovement.cpp \
     core/BaseObject.cpp \
-    core/BaseScene.cpp \
     core/BulletContainer.cpp \
+    core/CircleBullet.cpp \
     core/DirectionBullet.cpp \
+    core/DirectionMovement.cpp \
+    core/EnemyContainer.cpp \
     core/GameScene.cpp \
     core/HeroObject.cpp \
+    core/MovementContainer.cpp \
+    core/TestEnemy.cpp \
         gui/gamewidget.cpp \
         main.cpp \
 
 HEADERS += \
     core/BaseBullet.h \
+    core/BaseEnemyObject.h \
+    core/BaseMovement.h \
     core/BaseObject.h \
     core/BaseScene.h \
     core/BulletContainer.h \
+    core/CircleBullet.h \
     core/DirectionBullet.h \
+    core/DirectionMovement.h \
+    core/EnemyContainer.h \
     core/GameScene.h \
     core/HeroObject.h \
+    core/MovementContainer.h \
+    core/TestEnemy.h \
     core/ToolFunc.h \
     gui/gamewidget.h
 

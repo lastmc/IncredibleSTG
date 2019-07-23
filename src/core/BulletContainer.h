@@ -8,15 +8,14 @@
 namespace STG {
 
     class BulletContainer{
-        //实质是一个工厂。。顺便把创建也塞进去
         //应该是自机子弹跟敌机子弹分开管理，同时便于判断碰撞
-        //但是我还是觉得管理归工厂是真的离谱
     private:
         QVector<BaseBullet*> data;
         int lx,ly,rx,ry;//bullet out of field will be automatically deleted
     public:
-        BulletContainer(int lx,int ly,int rx,int ry);
+        BulletContainer(int lx=0,int ly=0,int rx=2000,int ry=2000);
         void addBullet(BaseBullet* b);
+        void addFromContainer(BulletContainer other);
         void update(int milliInterval);
         //void addBulletByString(std::string str);
 
@@ -27,6 +26,10 @@ namespace STG {
             //只读
             //并不想在类外提供修改功能
 
+        BulletContainer(BulletContainer&&);//移动构造防止指针暴毙
+        BulletContainer(const BulletContainer& other)=delete;//删除拷贝构造
+        void operator=(const BulletContainer& other)=delete;//删除拷贝赋值
+        void operator=(BulletContainer&& other);//移动赋值防止指针暴毙
         ~BulletContainer();
     };
 

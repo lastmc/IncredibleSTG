@@ -1,20 +1,26 @@
 #include "GameScene.h"
 #include "DirectionBullet.h"
+#include "TestEnemy.h"
 
 namespace STG {
 
-    GameScene::GameScene():selfBullets(BulletContainer(50,50,500,500)){
+    GameScene::GameScene():selfBullets(BulletContainer()),enemyBullets(BulletContainer()),enemys(EnemyContainer()),time(0){
         hero=nullptr;
         keyUp=false;
         keyRight=false;
         keyDown=false;
         keyLeft=false;
         keyZ=false;
+        keyShift=false;
+        keyX=false;
     }
 
     void GameScene::initHero(HeroObject* h){
         if(hero) delete hero;
         hero=h;
+        h->setX(300);
+        h->setY(600);
+        enemys.addEnemy(new TestEnemy(hero));
     }
 
     void GameScene::addHeroBullet(BaseBullet* b){
@@ -25,11 +31,14 @@ namespace STG {
         QPixmap heroPic;
         heroPic.load(":/pic/hero.ico");
         painter->drawPixmap((int)hero->x(),(int)hero->y(),32,32,heroPic);
+        for(int i=0;i<enemys.size();i++)
+            painter->drawPixmap((int)enemys[i]->x(),(int)enemys[i]->y(),32,32,heroPic);
         QPixmap bulletPic;
         bulletPic.load(":/pic/hero.ico");
-        for(int i=0;i<selfBullets.size();i++){
+        for(int i=0;i<selfBullets.size();i++)
             painter->drawPixmap((int)selfBullets[i]->x(),(int)selfBullets[i]->y(),10,10,bulletPic);
-        }
+        for(int i=0;i<enemyBullets.size();i++)
+            painter->drawPixmap((int)enemyBullets[i]->x(),(int)enemyBullets[i]->y(),10,10,bulletPic);
     }
 
     void GameScene::keyPress(int key){
@@ -48,6 +57,12 @@ namespace STG {
             break;
         case Qt::Key_Z:
             keyZ=true;
+            break;
+        case Qt::Key_Shift:
+            keyShift=true;
+            break;
+        case Qt::Key_X:
+            keyX=true;
             break;
         default:
             break;
@@ -71,17 +86,33 @@ namespace STG {
         case Qt::Key_Z:
             keyZ=false;
             break;
+        case Qt::Key_Shift:
+            keyShift=false;
+            break;
+        case Qt::Key_X:
+            keyX=false;
+            break;
         default:
             break;
         }
     }
 
     void GameScene::update(int milliInterval){
-        hero->setVx(-0.2*keyLeft+0.2*keyRight);
-        hero->setVy(-0.2*keyUp+0.2*keyDown);
+        time+=milliInterval;
+        hero->setVx(-(keyShift?0.1:0.2)*keyLeft+(keyShift?0.1:0.2)*keyRight);
+        hero->setVy(-(keyShift?0.1:0.2)*keyUp+(keyShift?0.1:0.2)*keyDown);
         hero->move(milliInterval);
-        if(keyZ) addHeroBullet(new DirectionBullet(hero->x(),hero->y(),0,-0.6,3));
+        enemys.update(milliInterval);
+        enemyBullets.addFromContainer(enemys.shoot());
+        if(keyZ && !(time%hero->getShootInterval())) selfBullets.addFromContainer(hero->shoot());
         selfBullets.update(milliInterval);
+        enemyBullets.update(milliInterval);
+
+        for(int i=0;i<enemys.size();i++)
+            if(selfBullets.isHitBy(*enemys[i])){
+                enemys[i]->hit();
+                qDebug("hit");
+            }
     }
 
     GameScene::~GameScene(){

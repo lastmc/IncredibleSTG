@@ -34,7 +34,7 @@ namespace STG {
         virtual const char* type()=0;
         */
 
-        virtual ~BaseObject()=0;
+        virtual ~BaseObject()=default;
     };
 
 }

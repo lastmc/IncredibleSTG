@@ -7,8 +7,8 @@ namespace STG {
 
     class BaseBullet : public BaseObject{
     public:
-        BaseBullet();
-        virtual ~BaseBullet();
+        BaseBullet()=default;
+        virtual ~BaseBullet()=default;
     };
 
 }

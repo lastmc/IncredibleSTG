@@ -1,5 +1,4 @@
 #include "BulletContainer.h"
-#include "DirectionBullet.h"
 
 namespace STG {
 
@@ -7,6 +6,12 @@ namespace STG {
 
     void BulletContainer::addBullet(BaseBullet *b){
         data.append(b);
+    }
+    void BulletContainer::addFromContainer(BulletContainer other){
+        while(other.size()){
+            data.append(other[0]);
+            other.data.erase(other.data.begin());
+        }
     }
 
     void BulletContainer::update(int milliInterval){
@@ -41,9 +46,38 @@ namespace STG {
         return data[index];
     }
 
+    BulletContainer::BulletContainer(BulletContainer&& other){
+        lx=other.lx;
+        ly=other.ly;
+        rx=other.rx;
+        ry=other.ry;
+        for(auto k:data)
+            if(k)
+                delete k;
+        data.clear();
+        for(int i=0;i<other.size();i++){
+            data.append(other[i]);
+            other.data[i]=nullptr;
+        }
+    }
+    void BulletContainer::operator=(BulletContainer &&other){
+        lx=other.lx;
+        ly=other.ly;
+        rx=other.rx;
+        ry=other.ry;
+        for(auto k:data)
+            if(k)
+                delete k;
+        data.clear();
+        for(int i=0;i<other.size();i++){
+            data.append(other[i]);
+            other.data[i]=nullptr;
+        }
+    }
     BulletContainer::~BulletContainer(){
         for(auto k:data)
-            delete k;
+            if(k)
+                delete k;
         data.clear();
     }
 

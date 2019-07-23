@@ -9,6 +9,7 @@ namespace STG {
         //直线弹幕
     public:
         DirectionBullet(double x,double y,double vx,double vy,double hitR);
+        DirectionBullet(double x,double y,double destX,double destY,double v,double hitR);
     };
 
 }
