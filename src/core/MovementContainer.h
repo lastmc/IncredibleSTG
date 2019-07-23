@@ -13,7 +13,7 @@ namespace STG {
     public:
         MovementContainer()=default;
 
-        double vx(int time) const;
+        double vx(int time) const;//由于圆周运动速度难以计算，不要使用这两个方法
         double vy(int time) const;
         int allTime() const;
         void addMovement(BaseMovement* bm);

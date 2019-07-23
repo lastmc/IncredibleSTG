@@ -29,6 +29,7 @@ namespace STG {
         return data[k]->vy(time);
     }
 
+
     MovementContainer::MovementContainer(MovementContainer&& other){
         for(auto k:data)
             if(k)

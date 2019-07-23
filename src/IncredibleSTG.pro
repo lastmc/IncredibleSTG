@@ -30,6 +30,7 @@ SOURCES += \
     core/BaseObject.cpp \
     core/BulletContainer.cpp \
     core/CircleBullet.cpp \
+    core/CircleMovement.cpp \
     core/DirectionBullet.cpp \
     core/DirectionMovement.cpp \
     core/EnemyContainer.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     core/BaseScene.h \
     core/BulletContainer.h \
     core/CircleBullet.h \
+    core/CircleMovement.h \
     core/DirectionBullet.h \
     core/DirectionMovement.h \
     core/EnemyContainer.h \

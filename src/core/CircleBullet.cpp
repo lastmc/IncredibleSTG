@@ -1,6 +1,7 @@
 #include "CircleBullet.h"
 #include "ToolFunc.h"
 #include <cmath>
+#include <QVector>
 
 namespace STG {
 
@@ -20,12 +21,13 @@ namespace STG {
         double dx=posX-centerX;
         double dy=posY-centerY;
         double alpha=std::acos(dx/radius);
-        if(dy<0) alpha=-alpha;
+        if(dy>0) alpha=-alpha;//y坐标方向与直角坐标相反
+        qDebug("%f",alpha);
         alpha+=velocity*time/radius;
         dx=radius*std::cos(alpha);
         dy=radius*std::sin(alpha);
         setX(dx+centerX);
-        setY(dy+centerY);
+        setY(-dy+centerY);//y坐标方向与直角坐标相反
     }
 
 }
