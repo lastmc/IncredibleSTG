@@ -20,7 +20,7 @@ namespace STG {
         BaseEnemyObject(BaseObject* hero);
         virtual void move(int time) override;
         virtual BulletContainer shoot()=0;
-        void hit();
+        void hit(int num=1);
         int getLife() const;
         int getMoveTime() const;
         virtual bool moveFinished() const;

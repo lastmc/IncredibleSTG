@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/pic">
-        <file>hero.ico</file>
+        <file>Bullet1.png</file>
+        <file>Hero.png</file>
+        <file>Fairy.png</file>
     </qresource>
     <qresource prefix="/gen">
         <file>Stage1</file>

@@ -30,9 +30,9 @@ namespace STG {
         double dist(const BaseObject& other) const;
         virtual bool isHitBy(const BaseObject& other) const;
 
-        /*Information
-        virtual const char* type()=0;
-        */
+        //Information
+        virtual const char* pic()=0;
+
 
         virtual ~BaseObject()=default;
     };

@@ -33,17 +33,22 @@ namespace STG {
     }
 
     void GameScene::paint(QPainter* painter){
+        painter->drawRect(lx,ly,rx-lx,ry-ly);
+        //painter->setClipRect(lx,ly,rx-lx,ry-ly);
         QPixmap heroPic;
-        heroPic.load(":/pic/hero.ico");
-        painter->drawPixmap((int)hero->x(),(int)hero->y(),32,32,heroPic);
+        heroPic.load(hero->pic());
+        painter->drawPixmap((int)hero->x()-16,(int)hero->y()-25,32,50,heroPic,0,0,32,50);
         for(int i=0;i<enemys.size();i++)
-            painter->drawPixmap((int)enemys[i]->x(),(int)enemys[i]->y(),32,32,heroPic);
+            painter->drawPixmap((int)enemys[i]->x()-25,(int)enemys[i]->y()-16,50,32,QPixmap(enemys[i]->pic()),0,0,50,32);
         QPixmap bulletPic;
-        bulletPic.load(":/pic/hero.ico");
-        for(int i=0;i<selfBullets.size();i++)
-            painter->drawPixmap((int)selfBullets[i]->x(),(int)selfBullets[i]->y(),10,10,bulletPic);
-        for(int i=0;i<enemyBullets.size();i++)
-            painter->drawPixmap((int)enemyBullets[i]->x(),(int)enemyBullets[i]->y(),10,10,bulletPic);
+        for(int i=0;i<selfBullets.size();i++){
+            bulletPic.load(selfBullets[i]->pic());
+            painter->drawPixmap((int)selfBullets[i]->x()-8,(int)selfBullets[i]->y()-8,16,16,bulletPic);
+        }
+        for(int i=0;i<enemyBullets.size();i++){
+            bulletPic.load(enemyBullets[i]->pic());
+            painter->drawPixmap((int)enemyBullets[i]->x()-8,(int)enemyBullets[i]->y()-8,16,16,bulletPic);
+        }
     }
 
     void GameScene::keyPress(int key){
@@ -102,7 +107,7 @@ namespace STG {
         }
     }
 
-    void GameScene::update(int milliInterval){
+    BaseScene::GameResult GameScene::update(int milliInterval){
         time+=milliInterval;
         hero->setVx(-(keyShift?0.1:0.2)*keyLeft+(keyShift?0.1:0.2)*keyRight);
         hero->setVy(-(keyShift?0.1:0.2)*keyUp+(keyShift?0.1:0.2)*keyDown);
@@ -119,10 +124,20 @@ namespace STG {
         enemyBullets.update(milliInterval);
 
         for(int i=0;i<enemys.size();i++)
-            if(selfBullets.isHitBy(*enemys[i])){
-                enemys[i]->hit();
-                qDebug("hit");
+            enemys[i]->hit(selfBullets.isHitBy(*enemys[i]));
+
+        if(enemyBullets.isHitBy(*hero)){
+            hero->hit();
+            if(hero->alive()){
+                selfBullets=BulletContainer();
+                enemyBullets=BulletContainer();
+                hero->setX(300);
+                hero->setY(600);
+            }else{
+                return BaseScene::GameOver;
             }
+        }
+        return BaseScene::Gaming;
     }
 
     GameScene::~GameScene(){

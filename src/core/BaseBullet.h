@@ -8,7 +8,10 @@ namespace STG {
     class BaseBullet : public BaseObject{
     public:
         BaseBullet()=default;
-        virtual ~BaseBullet()=default;
+        virtual ~BaseBullet() override=default;
+        virtual inline const char* pic() override{
+            return ":/pic/Bullet1.png";
+        }
     };
 
 }

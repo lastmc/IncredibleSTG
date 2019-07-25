@@ -25,8 +25,8 @@ namespace STG {
         return moveTime>mContainer.allTime();
     }
 
-    void BaseEnemyObject::hit(){
-        life--;
+    void BaseEnemyObject::hit(int num){
+        life-=num;
     }
 
 }

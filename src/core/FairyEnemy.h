@@ -9,6 +9,9 @@ namespace STG {
     public:
         FairyEnemy(double x,double y,BaseObject* hero,MovementContainer mC);
         virtual BulletContainer shoot() override;
+        virtual const char* pic() override{
+            return ":/pic/Fairy.png";
+        }
     };
 
 }

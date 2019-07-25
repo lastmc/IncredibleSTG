@@ -4,8 +4,8 @@
 namespace STG {
 
     FairyEnemy::FairyEnemy(double x,double y,BaseObject* hero,MovementContainer mC){
-        life=5;
-        hitRadius=6;
+        life=2;
+        hitRadius=12;
         posX=x;
         posY=y;
         this->hero=hero;

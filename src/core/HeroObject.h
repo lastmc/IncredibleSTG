@@ -15,15 +15,19 @@ namespace STG {
         int shootInterval;//射击间隔，建议是帧时间倍数
         int shootCount;//射击次数
     public:
-        HeroObject(int life=2,int bomb=2,int shootInterval=80);
-        virtual ~HeroObject();
+        HeroObject(int life=3,int bomb=2,int shootInterval=120);
+        virtual ~HeroObject() override;
 
         int getLife() const;
         int getBomb() const;
         int getShootInterval() const;
         int getShootCount() const;
+        void hit();
         bool alive() const;
         virtual BulletContainer shoot();
+        virtual const char* pic() override{
+            return ":/pic/Hero.png";
+        }
     };
 
 }

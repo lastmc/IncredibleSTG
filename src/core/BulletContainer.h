@@ -19,7 +19,7 @@ namespace STG {
         void update(int milliInterval);
         //void addBulletByString(std::string str);
 
-        bool isHitBy(const BaseObject& obj);//判断是否跟什么相撞
+        int isHitBy(const BaseObject& obj);//判断是否跟什么相撞，返回碰撞数
 
         int size() const;
         BaseBullet* operator[](int index) const;

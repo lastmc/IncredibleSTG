@@ -24,16 +24,16 @@ namespace STG {
         return shootCount;
     }
 
+    void HeroObject::hit(){
+        life--;
+    }
+
     BulletContainer HeroObject::shoot(){
         shootCount++;
         BulletContainer bc;
         bc.addBullet(new DirectionBullet(x(),y(),0,-0.5,3));
-        bc.addBullet(new DirectionBullet(x(),y(),-0.2,-0.5,3));
-        bc.addBullet(new DirectionBullet(x(),y(),0.2,-0.5,3));
-        bc.addBullet(new DirectionBullet(x()-6,y()-20,0,-0.5,3));
-        bc.addBullet(new DirectionBullet(x()-6,y(),0,-0.5,3));
-        bc.addBullet(new DirectionBullet(x()+6,y()-20,0,-0.5,3));
-        bc.addBullet(new DirectionBullet(x()+6,y(),0,-0.5,3));
+        bc.addBullet(new DirectionBullet(x(),y(),-0.1,-0.5,3));
+        bc.addBullet(new DirectionBullet(x(),y(),0.1,-0.5,3));
         return bc;
     }
 

@@ -1,3 +1,12 @@
 100
 # Fairy 100 100
-* Direction 0.1 0 3000 ! !
+* Direction 0.1 0 6000 !
+# Fairy 700 100
+* Direction -0.1 0 6000 !
+End
+500
+# Fairy 100 100
+* Direction 0.1 0 6000 !
+# Fairy 700 100
+* Direction -0.1 0 6000 !
+End

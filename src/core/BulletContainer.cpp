@@ -31,10 +31,16 @@ namespace STG {
 
     //void BulletContainer::addBulletByString(std::string str){}//暂时弃用
 
-    bool BulletContainer::isHitBy(const BaseObject& obj){
-        for(auto k:data)
-            if(k->isHitBy(obj)) return true;
-        return false;
+    int BulletContainer::isHitBy(const BaseObject& obj){
+        int num=0;
+        if(data.empty()) return 0;
+        for(int k=0;k<data.size();)
+            if(data[k]->isHitBy(obj)){
+                num++;
+                delete data[k];
+                data.erase(data.begin()+k);
+            }else k++;
+        return num;
     }
 
     int BulletContainer::size() const{

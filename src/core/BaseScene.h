@@ -7,10 +7,13 @@ namespace STG {
 
     class BaseScene{
     public:
+        enum GameResult{
+          Gaming,GameOver,StageClear
+        };
         virtual void paint(QPainter* painter)=0;
         virtual void keyPress(int key)=0;
         virtual void keyRelease(int key)=0;
-        virtual void update(int milliInteval)=0;
+        virtual GameResult update(int milliInteval)=0;
 
         virtual ~BaseScene()=default;
     };
