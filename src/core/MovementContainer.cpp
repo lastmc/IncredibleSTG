@@ -12,6 +12,7 @@ namespace STG {
     }
 
     double MovementContainer::vx(int time) const{
+        if(data.empty()) return 0;
         int k;
         for(k=0;time-data[k]->allTime()>0;k++){
             time-=data[k]->allTime();
@@ -21,6 +22,7 @@ namespace STG {
     }
 
     double MovementContainer::vy(int time) const{
+        if(data.empty()) return 0;
         int k;
         for(k=0;time-data[k]->allTime()>0;k++){
             time-=data[k]->allTime();

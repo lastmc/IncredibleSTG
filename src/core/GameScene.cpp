@@ -1,10 +1,15 @@
 #include "GameScene.h"
 #include "DirectionBullet.h"
 #include "TestEnemy.h"
+#include "DirectionMovement.h"
+#include "FairyEnemy.h"
 
 namespace STG {
 
-    GameScene::GameScene():selfBullets(BulletContainer()),enemyBullets(BulletContainer()),enemys(EnemyContainer()),time(0){
+    GameScene::GameScene()
+        :lx(100),ly(40),rx(600),ry(700),time(0),
+          selfBullets(BulletContainer(lx,ly,rx,ry)),enemyBullets(BulletContainer(lx,ly,rx,ry)),enemys(EnemyContainer()),
+          eFactory(":/gen/Stage1"){
         hero=nullptr;
         keyUp=false;
         keyRight=false;
@@ -20,7 +25,7 @@ namespace STG {
         hero=h;
         h->setX(300);
         h->setY(600);
-        enemys.addEnemy(new TestEnemy(hero));
+        eFactory.setHero(hero);
     }
 
     void GameScene::addHeroBullet(BaseBullet* b){
@@ -102,6 +107,11 @@ namespace STG {
         hero->setVx(-(keyShift?0.1:0.2)*keyLeft+(keyShift?0.1:0.2)*keyRight);
         hero->setVy(-(keyShift?0.1:0.2)*keyUp+(keyShift?0.1:0.2)*keyDown);
         hero->move(milliInterval);
+        if(hero->x()<lx) hero->setX(lx);
+        if(hero->y()<ly) hero->setY(ly);
+        if(hero->x()>rx) hero->setX(rx);
+        if(hero->y()>ry) hero->setY(ry);
+        enemys.addFromContainer(eFactory.generate(time));
         enemys.update(milliInterval);
         enemyBullets.addFromContainer(enemys.shoot());
         if(keyZ && !(time%hero->getShootInterval())) selfBullets.addFromContainer(hero->shoot());

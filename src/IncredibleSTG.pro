@@ -34,6 +34,8 @@ SOURCES += \
     core/DirectionBullet.cpp \
     core/DirectionMovement.cpp \
     core/EnemyContainer.cpp \
+    core/EnemyFactory.cpp \
+    core/FairyEnemy.cpp \
     core/GameScene.cpp \
     core/HeroObject.cpp \
     core/MovementContainer.cpp \
@@ -53,6 +55,8 @@ HEADERS += \
     core/DirectionBullet.h \
     core/DirectionMovement.h \
     core/EnemyContainer.h \
+    core/EnemyFactory.h \
+    core/FairyEnemy.h \
     core/GameScene.h \
     core/HeroObject.h \
     core/MovementContainer.h \

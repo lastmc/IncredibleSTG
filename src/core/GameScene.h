@@ -8,16 +8,19 @@
 #include "BulletContainer.h"
 #include "BaseEnemyObject.h"
 #include "EnemyContainer.h"
+#include "EnemyFactory.h"
 
 namespace STG {
 
     class GameScene:public BaseScene{
     private:
+        bool keyUp,keyDown,keyRight,keyLeft,keyZ,keyShift,keyX;
+        int lx,ly,rx,ry;//边界
+        int time;
         HeroObject* hero;
         BulletContainer selfBullets,enemyBullets;
         EnemyContainer enemys;
-        bool keyUp,keyDown,keyRight,keyLeft,keyZ,keyShift,keyX;
-        int time;
+        EnemyFactory eFactory;
     public:
         GameScene();
         void initHero(HeroObject* h);

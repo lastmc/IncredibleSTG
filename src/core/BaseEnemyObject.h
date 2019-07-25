@@ -12,6 +12,7 @@ namespace STG {
     protected:
         int life;//生命
         int moveTime=0;//运动时间，同时也控制射击
+        int shootInterval=40;
         MovementContainer mContainer;
         BaseObject* hero;//用于发射自机狙
     public:

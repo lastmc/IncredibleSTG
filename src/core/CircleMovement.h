@@ -7,9 +7,9 @@ namespace STG {
 
     class CircleMovement : public BaseMovement{
     private:
+        double x,y;//起始坐标
         double centerX,centerY,velocity;//centerX,centerY为绝对坐标,velocity正为逆时针
         double radius;//记录半径
-        double x,y;//起始坐标
         int interval;//帧率，决定圆周运动精细程度
     public:
         CircleMovement(double x,double y,double deltaX,double deltaY,double v,int mtime,int interval=10);//直接指定起始坐标与圆心

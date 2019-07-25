@@ -21,4 +21,9 @@ namespace STG {
         setVy(v*(destY-y)/radius);
     }
 
+    DirectionBullet::DirectionBullet(BaseObject* src,double vx,double vy,double hitR):DirectionBullet(src->x(),src->y(),vx,vy,hitR){}
+
+    DirectionBullet::DirectionBullet(BaseObject* src,BaseObject* dst,double v,double hitR)
+        :DirectionBullet(src->x(),src->y(),dst->x(),dst->y(),v,hitR){}
+
 }

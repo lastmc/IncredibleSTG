@@ -8,10 +8,9 @@ namespace STG {
     TestEnemy::TestEnemy(BaseObject* hero):BaseEnemyObject(hero){
         life=3;
         setHitR(6);
-        moveTime=0;
         MovementContainer c;
         c.addMovement(new DirectionMovement(0.1,0.1,3000));
-        c.addMovement(new CircleMovement(300,300,0,-100,0.3,30000));
+        c.addMovement(new CircleMovement(300,300,0,-100,0.14,30000));
         mContainer=std::move(c);
     }
 

@@ -2,4 +2,7 @@
     <qresource prefix="/pic">
         <file>hero.ico</file>
     </qresource>
+    <qresource prefix="/gen">
+        <file>Stage1</file>
+    </qresource>
 </RCC>
