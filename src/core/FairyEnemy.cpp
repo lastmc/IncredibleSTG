@@ -16,7 +16,7 @@ namespace STG {
     BulletContainer FairyEnemy::shoot(){
         BulletContainer c;
         if(moveTime%shootInterval==0)
-            c.addBullet(new DirectionBullet(x(),y(),hero->x(),hero->y(),0.15,3));
+            c.addBullet(new DirectionBullet(x(),y(),hero->x(),hero->y(),0.15,7));
         return c;
     }
 

@@ -3,6 +3,10 @@
         <file>Bullet1.png</file>
         <file>Hero.png</file>
         <file>Fairy.png</file>
+        <file>Butterfly.png</file>
+        <file>Boss.png</file>
+        <file>Stage1bg.png</file>
+        <file>Stage1bg.jpg</file>
     </qresource>
     <qresource prefix="/gen">
         <file>Stage1</file>

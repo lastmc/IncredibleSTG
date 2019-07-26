@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QTimer>
 #include "../core/BaseScene.h"
-#include "../core/GameScene.h"
 
 namespace Ui {
 class GameWidget;

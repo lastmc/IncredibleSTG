@@ -20,6 +20,7 @@ namespace STG {
     public:
         EnemyFactory(const char* path);
         void setHero(BaseObject* hero);
+        bool finished() const;
         EnemyContainer generate(int time);
     };
 

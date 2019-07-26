@@ -2,6 +2,8 @@
 #include "DirectionMovement.h"
 #include "CircleMovement.h"
 #include "FairyEnemy.h"
+#include "ButterflyEnemy.h"
+#include "BossEnemy.h"
 
 namespace STG {
 
@@ -38,6 +40,10 @@ namespace STG {
         this->hero=hero;
     }
 
+    bool EnemyFactory::finished() const{
+        return tS.atEnd();
+    }
+
     EnemyContainer EnemyFactory::generate(int time){
         EnemyContainer ec;
         if(tS.atEnd()) return ec;
@@ -50,6 +56,14 @@ namespace STG {
                     double x,y;
                     tS>>x>>y;
                     ec.addEnemy(new FairyEnemy(x,y,hero,generateMovement(tS)));
+                }else if(name=="Butterfly"){
+                    double x,y;
+                    tS>>x>>y;
+                    ec.addEnemy(new ButterflyEnemy(x,y,hero,generateMovement(tS)));
+                }else if(name=="Boss"){
+                    double x,y;
+                    tS>>x>>y;
+                    ec.addEnemy(new BossEnemy(x,y,hero,generateMovement(tS)));
                 }
                 tS>>ctrl;
             }

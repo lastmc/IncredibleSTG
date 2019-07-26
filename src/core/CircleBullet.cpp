@@ -22,7 +22,6 @@ namespace STG {
         double dy=posY-centerY;
         double alpha=std::acos(dx/radius);
         if(dy>0) alpha=-alpha;//y坐标方向与直角坐标相反
-        qDebug("%f",alpha);
         alpha+=velocity*time/radius;
         dx=radius*std::cos(alpha);
         dy=radius*std::sin(alpha);

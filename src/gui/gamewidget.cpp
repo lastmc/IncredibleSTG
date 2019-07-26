@@ -3,6 +3,10 @@
 #include <QPainter>
 #include <QKeyEvent>
 
+
+#include "../core/GameScene.h"
+#include "../core/GameOverScene.h"
+
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameWidget)
@@ -15,7 +19,6 @@ GameWidget::GameWidget(QWidget *parent) :
     buffPainter.begin(&buffPixMap);
 
     STG::GameScene* gScene=new STG::GameScene();
-    gScene->initHero(new STG::HeroObject());
     scene=gScene;
     timer.setTimerType(Qt::PreciseTimer);
     timer.setInterval(10);
@@ -31,7 +34,22 @@ GameWidget::~GameWidget()
 }
 
 void GameWidget::updateScene(){
-    scene->update(10);
+    switch(scene->update(10)){
+    case STG::BaseScene::Retry:
+        delete scene;
+        scene=new STG::GameScene();
+        break;
+    case STG::BaseScene::GameOver:{
+        STG::GameScene* ptr=dynamic_cast<STG::GameScene*>(scene);
+        int score=-1;
+        if(ptr) score=ptr->getScore();
+        delete scene;
+        scene=new STG::GameOverScene(score);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 void GameWidget::paintEvent(QPaintEvent*){

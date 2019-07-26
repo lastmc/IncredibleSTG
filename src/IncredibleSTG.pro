@@ -28,7 +28,9 @@ SOURCES += \
     core/BaseEnemyObject.cpp \
     core/BaseMovement.cpp \
     core/BaseObject.cpp \
+    core/BossEnemy.cpp \
     core/BulletContainer.cpp \
+    core/ButterflyEnemy.cpp \
     core/CircleBullet.cpp \
     core/CircleMovement.cpp \
     core/DirectionBullet.cpp \
@@ -36,6 +38,7 @@ SOURCES += \
     core/EnemyContainer.cpp \
     core/EnemyFactory.cpp \
     core/FairyEnemy.cpp \
+    core/GameOverScene.cpp \
     core/GameScene.cpp \
     core/HeroObject.cpp \
     core/MovementContainer.cpp \
@@ -49,7 +52,9 @@ HEADERS += \
     core/BaseMovement.h \
     core/BaseObject.h \
     core/BaseScene.h \
+    core/BossEnemy.h \
     core/BulletContainer.h \
+    core/ButterflyEnemy.h \
     core/CircleBullet.h \
     core/CircleMovement.h \
     core/DirectionBullet.h \
@@ -57,6 +62,7 @@ HEADERS += \
     core/EnemyContainer.h \
     core/EnemyFactory.h \
     core/FairyEnemy.h \
+    core/GameOverScene.h \
     core/GameScene.h \
     core/HeroObject.h \
     core/MovementContainer.h \

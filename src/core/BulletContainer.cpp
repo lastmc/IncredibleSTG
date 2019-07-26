@@ -53,10 +53,6 @@ namespace STG {
     }
 
     BulletContainer::BulletContainer(BulletContainer&& other){
-        lx=other.lx;
-        ly=other.ly;
-        rx=other.rx;
-        ry=other.ry;
         for(auto k:data)
             if(k)
                 delete k;
@@ -67,10 +63,6 @@ namespace STG {
         }
     }
     void BulletContainer::operator=(BulletContainer &&other){
-        lx=other.lx;
-        ly=other.ly;
-        rx=other.rx;
-        ry=other.ry;
         for(auto k:data)
             if(k)
                 delete k;

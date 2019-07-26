@@ -4,7 +4,9 @@
 
 namespace STG {
 
-    HeroObject::HeroObject(int life,int bomb,int shootInterval):BaseObject(),life(life),bomb(bomb),shootInterval(shootInterval){}
+    HeroObject::HeroObject(int life,int bomb,int shootInterval):BaseObject(),life(life),bomb(bomb),shootInterval(shootInterval){
+        setHitR(3);
+    }
 
     HeroObject::~HeroObject(){}
 
@@ -24,6 +26,10 @@ namespace STG {
         return shootCount;
     }
 
+    void HeroObject::lowSpeed(bool enable){
+        lowSpeedMode=enable;
+    }
+
     void HeroObject::hit(){
         life--;
     }
@@ -31,9 +37,15 @@ namespace STG {
     BulletContainer HeroObject::shoot(){
         shootCount++;
         BulletContainer bc;
-        bc.addBullet(new DirectionBullet(x(),y(),0,-0.5,3));
-        bc.addBullet(new DirectionBullet(x(),y(),-0.1,-0.5,3));
-        bc.addBullet(new DirectionBullet(x(),y(),0.1,-0.5,3));
+        if(lowSpeedMode){
+            bc.addBullet(new DirectionBullet(x()-10,y(),0,-0.5,3));
+            bc.addBullet(new DirectionBullet(x(),y(),0,-0.5,3));
+            bc.addBullet(new DirectionBullet(x()+10,y(),0,-0.5,3));
+        }else{
+            bc.addBullet(new DirectionBullet(x(),y(),0,-0.5,3));
+            bc.addBullet(new DirectionBullet(x(),y(),-0.1,-0.5,3));
+            bc.addBullet(new DirectionBullet(x(),y(),0.1,-0.5,3));
+        }
         return bc;
     }
 

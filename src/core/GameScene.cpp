@@ -3,11 +3,12 @@
 #include "TestEnemy.h"
 #include "DirectionMovement.h"
 #include "FairyEnemy.h"
+#include <cmath>
 
 namespace STG {
 
     GameScene::GameScene()
-        :lx(100),ly(40),rx(600),ry(700),time(0),
+        :lx(80),ly(40),rx(590),ry(720),time(0),
           selfBullets(BulletContainer(lx,ly,rx,ry)),enemyBullets(BulletContainer(lx,ly,rx,ry)),enemys(EnemyContainer()),
           eFactory(":/gen/Stage1"){
         hero=nullptr;
@@ -18,6 +19,11 @@ namespace STG {
         keyZ=false;
         keyShift=false;
         keyX=false;
+        gamePaused=false;
+        cleared=false;
+        exitFlag=false;
+        score=0;
+        initHero(new HeroObject());
     }
 
     void GameScene::initHero(HeroObject* h){
@@ -33,13 +39,37 @@ namespace STG {
     }
 
     void GameScene::paint(QPainter* painter){
-        painter->drawRect(lx,ly,rx-lx,ry-ly);
-        //painter->setClipRect(lx,ly,rx-lx,ry-ly);
+        //Draw Status
+        QFont f;
+        f.setBold(true);
+        f.setPointSize(14);
+        painter->setFont(f);
+        painter->drawText(QPoint(700,80),"Life  : "+QString(hero->getLife(),QChar(0x2730)));//✰
+        painter->drawText(QPoint(700,100),"Score : "+QString::number(score));
+        painter->drawText(QPoint(700,150),"Current Console");
+        painter->drawText(QPoint(700,200),keyUp?"Up":"");
+        painter->drawText(QPoint(700,220),keyDown?"Down":"");
+        painter->drawText(QPoint(700,240),keyLeft?"Left":"");
+        painter->drawText(QPoint(700,260),keyRight?"Right":"");
+        painter->drawText(QPoint(700,280),keyZ?"Shoot":"");
+        painter->drawText(QPoint(700,320),keyShift?"Low Speed Mode":"");
+        painter->drawText(QPoint(700,500),gamePaused?"Game Paused":"");
+        painter->drawText(QPoint(700,520),cleared?"Stage Clear! Press Esc to exit":"");
+
+
+        //Draw Bg
+        painter->setClipRect(lx,ly,rx-lx,ry-ly);
+        QPixmap bg(":/pic/Stage1bg.png");
+        painter->drawPixmap(lx,ly,rx-lx,ry-ly,bg,0,1360-time/10%1360,510,680);
+
         QPixmap heroPic;
         heroPic.load(hero->pic());
         painter->drawPixmap((int)hero->x()-16,(int)hero->y()-25,32,50,heroPic,0,0,32,50);
-        for(int i=0;i<enemys.size();i++)
-            painter->drawPixmap((int)enemys[i]->x()-25,(int)enemys[i]->y()-16,50,32,QPixmap(enemys[i]->pic()),0,0,50,32);
+        for(int i=0;i<enemys.size();i++){
+            QPixmap enemyPic(enemys[i]->pic());
+            painter->drawPixmap((int)enemys[i]->x()-enemyPic.width()/2,(int)enemys[i]->y()-enemyPic.height()/2,
+                                enemyPic.width(),enemyPic.height(),QPixmap(enemys[i]->pic()));
+        }
         QPixmap bulletPic;
         for(int i=0;i<selfBullets.size();i++){
             bulletPic.load(selfBullets[i]->pic());
@@ -49,6 +79,8 @@ namespace STG {
             bulletPic.load(enemyBullets[i]->pic());
             painter->drawPixmap((int)enemyBullets[i]->x()-8,(int)enemyBullets[i]->y()-8,16,16,bulletPic);
         }
+
+        painter->setClipRect(0,0,painter->device()->width(),painter->device()->height());
     }
 
     void GameScene::keyPress(int key){
@@ -73,6 +105,10 @@ namespace STG {
             break;
         case Qt::Key_X:
             keyX=true;
+            break;
+        case Qt::Key_Escape:
+            if(cleared) exitFlag=true;
+            else gamePaused=!gamePaused;
             break;
         default:
             break;
@@ -108,7 +144,11 @@ namespace STG {
     }
 
     BaseScene::GameResult GameScene::update(int milliInterval){
+        if(gamePaused) return GamePaused;
+
         time+=milliInterval;
+
+        hero->lowSpeed(keyShift);
         hero->setVx(-(keyShift?0.1:0.2)*keyLeft+(keyShift?0.1:0.2)*keyRight);
         hero->setVy(-(keyShift?0.1:0.2)*keyUp+(keyShift?0.1:0.2)*keyDown);
         hero->move(milliInterval);
@@ -116,15 +156,29 @@ namespace STG {
         if(hero->y()<ly) hero->setY(ly);
         if(hero->x()>rx) hero->setX(rx);
         if(hero->y()>ry) hero->setY(ry);
+
         enemys.addFromContainer(eFactory.generate(time));
         enemys.update(milliInterval);
         enemyBullets.addFromContainer(enemys.shoot());
+
         if(keyZ && !(time%hero->getShootInterval())) selfBullets.addFromContainer(hero->shoot());
         selfBullets.update(milliInterval);
+
         enemyBullets.update(milliInterval);
 
-        for(int i=0;i<enemys.size();i++)
-            enemys[i]->hit(selfBullets.isHitBy(*enemys[i]));
+        for(int i=0;i<enemys.size();i++){
+            int hit=selfBullets.isHitBy(*enemys[i]);
+            enemys[i]->hit(hit);
+            score+=hit;
+        }
+
+
+        if(eFactory.finished() && enemys.size()==0){
+            if(enemyBullets.size()) enemyBullets=BulletContainer();
+            if(!cleared) score+=100+80*hero->getLife();
+            cleared=true;
+        }
+        if(exitFlag) return StageClear;
 
         if(enemyBullets.isHitBy(*hero)){
             hero->hit();
@@ -140,7 +194,11 @@ namespace STG {
         return BaseScene::Gaming;
     }
 
-    GameScene::~GameScene(){
+    int GameScene::getScore(){
+        return score;
+    }
 
+    GameScene::~GameScene(){
+        delete hero;
     }
 }

@@ -8,7 +8,7 @@ namespace STG {
     class BaseScene{
     public:
         enum GameResult{
-          Gaming,GameOver,StageClear
+          Gaming,GameOver,StageClear,GamePaused,Retry,MainMenu
         };
         virtual void paint(QPainter* painter)=0;
         virtual void keyPress(int key)=0;
