@@ -3,9 +3,10 @@
 #include <QPainter>
 #include <QKeyEvent>
 
-
+#include "../core/MainMenuScene.h"
 #include "../core/GameScene.h"
 #include "../core/GameOverScene.h"
+#include "../core/StageClearScene.h"
 
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
@@ -18,8 +19,7 @@ GameWidget::GameWidget(QWidget *parent) :
     buffPixMap.fill(Qt::white);
     buffPainter.begin(&buffPixMap);
 
-    STG::GameScene* gScene=new STG::GameScene();
-    scene=gScene;
+    scene=new STG::MainMenuScene();
     timer.setTimerType(Qt::PreciseTimer);
     timer.setInterval(10);
     connect(&timer,SIGNAL(timeout()),this,SLOT(repaint()));
@@ -31,10 +31,12 @@ GameWidget::GameWidget(QWidget *parent) :
 GameWidget::~GameWidget()
 {
     delete ui;
+    if(scene) delete scene;
 }
 
 void GameWidget::updateScene(){
     switch(scene->update(10)){
+    case STG::BaseScene::GameStart:
     case STG::BaseScene::Retry:
         delete scene;
         scene=new STG::GameScene();
@@ -47,6 +49,20 @@ void GameWidget::updateScene(){
         scene=new STG::GameOverScene(score);
         break;
     }
+    case STG::BaseScene::StageClear:{
+        STG::GameScene* ptr=dynamic_cast<STG::GameScene*>(scene);
+        int score=-1;
+        if(ptr) score=ptr->getScore();
+        delete scene;
+        scene=new STG::StageClearScene(score);
+        break;
+    }
+    case STG::BaseScene::MainMenu:
+        delete scene;
+        scene=new STG::MainMenuScene();
+        break;
+    case STG::BaseScene::ExitGame:
+        exit(0);
     default:
         break;
     }

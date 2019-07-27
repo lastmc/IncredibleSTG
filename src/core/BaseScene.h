@@ -8,7 +8,14 @@ namespace STG {
     class BaseScene{
     public:
         enum GameResult{
-          Gaming,GameOver,StageClear,GamePaused,Retry,MainMenu
+          Gaming,//当前场景正常运行
+          GameOver,//死亡，前往GameOverScene
+          StageClear,//通关，前往下一关或者GameClearScene
+          GamePaused,//暂停中
+          Retry,//从头开始，回到第一关
+          MainMenu,//回主菜单
+          GameStart,//从第一关开始
+          ExitGame//退出游戏
         };
         virtual void paint(QPainter* painter)=0;
         virtual void keyPress(int key)=0;

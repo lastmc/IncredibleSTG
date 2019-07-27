@@ -149,8 +149,8 @@ namespace STG {
         time+=milliInterval;
 
         hero->lowSpeed(keyShift);
-        hero->setVx(-(keyShift?0.1:0.2)*keyLeft+(keyShift?0.1:0.2)*keyRight);
-        hero->setVy(-(keyShift?0.1:0.2)*keyUp+(keyShift?0.1:0.2)*keyDown);
+        hero->setVx(-(keyShift?0.15:0.3)*keyLeft+(keyShift?0.15:0.3)*keyRight);
+        hero->setVy(-(keyShift?0.15:0.3)*keyUp+(keyShift?0.15:0.3)*keyDown);
         hero->move(milliInterval);
         if(hero->x()<lx) hero->setX(lx);
         if(hero->y()<ly) hero->setY(ly);

@@ -11,6 +11,13 @@ End
 * Direction -0.1 0 6000 !
 End
 7000
-# Boss 400 100
-* Direction 0 0 100000 !
+# Boss 100 100
+* Direction 0.1 0 4000
+* Direction -0.1 0 4000
+* Direction 0.1 0 4000
+* Direction -0.1 0 4000
+* Direction 0.1 0 4000
+* Direction -0.1 0 4000
+* Direction 0.1 0 4000
+* Direction -0.1 0 4000 !
 End
