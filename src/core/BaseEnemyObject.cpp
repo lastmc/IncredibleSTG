@@ -1,4 +1,5 @@
 #include "BaseEnemyObject.h"
+#include "BonusBullet.h"
 
 namespace STG {
 
@@ -27,6 +28,14 @@ namespace STG {
 
     void BaseEnemyObject::hit(int num){
         life-=num;
+    }
+
+    void BaseEnemyObject::setBonusContainer(BulletContainer *p){
+        bonusC=p;
+    }
+
+    BaseEnemyObject::~BaseEnemyObject(){
+        if(bonusC) bonusC->addBullet(new BonusBullet(x(),y(),0,0.15,18));
     }
 
 }

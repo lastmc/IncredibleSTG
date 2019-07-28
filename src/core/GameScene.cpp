@@ -9,7 +9,8 @@ namespace STG {
 
     GameScene::GameScene()
         :lx(80),ly(40),rx(590),ry(720),time(0),
-          selfBullets(BulletContainer(lx,ly,rx,ry)),enemyBullets(BulletContainer(lx,ly,rx,ry)),enemys(EnemyContainer()),
+          selfBullets(BulletContainer(lx,ly,rx,ry)),enemyBullets(BulletContainer(lx,ly,rx,ry)),bonus(BulletContainer(lx,ly,rx,ry)),
+          enemys(EnemyContainer()),
           eFactory(":/gen/Stage1"){
         hero=nullptr;
         keyUp=false;
@@ -24,6 +25,7 @@ namespace STG {
         exitFlag=false;
         score=0;
         initHero(new HeroObject());
+        eFactory.setBonusContainer(&bonus);
     }
 
     void GameScene::initHero(HeroObject* h){
@@ -79,6 +81,8 @@ namespace STG {
             bulletPic.load(enemyBullets[i]->pic());
             painter->drawPixmap((int)enemyBullets[i]->x()-8,(int)enemyBullets[i]->y()-8,16,16,bulletPic);
         }
+        for(int i=0;i<bonus.size();i++)
+            painter->drawPixmap((int)bonus[i]->x()-12,(int)bonus[i]->y()-12,24,24,QPixmap(bonus[i]->pic()));
 
         painter->setClipRect(0,0,painter->device()->width(),painter->device()->height());
     }
@@ -144,6 +148,7 @@ namespace STG {
     }
 
     BaseScene::GameResult GameScene::update(int milliInterval){
+        //Main Logic
         if(gamePaused) return GamePaused;
 
         time+=milliInterval;
@@ -166,11 +171,14 @@ namespace STG {
 
         enemyBullets.update(milliInterval);
 
+        bonus.update(milliInterval);
+
         for(int i=0;i<enemys.size();i++){
             int hit=selfBullets.isHitBy(*enemys[i]);
             enemys[i]->hit(hit);
             score+=hit;
         }
+        score+=bonus.isHitBy(*hero)*10;
 
 
         if(eFactory.finished() && enemys.size()==0){
@@ -180,7 +188,7 @@ namespace STG {
         }
         if(exitFlag) return StageClear;
 
-        if(enemyBullets.isHitBy(*hero)){
+        if(enemyBullets.isHitBy(*hero) || enemys.isHitBy(*hero)){
             hero->hit();
             if(hero->alive()){
                 selfBullets=BulletContainer();

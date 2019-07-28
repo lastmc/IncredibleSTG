@@ -28,6 +28,7 @@ SOURCES += \
     core/BaseEnemyObject.cpp \
     core/BaseMovement.cpp \
     core/BaseObject.cpp \
+    core/BonusBullet.cpp \
     core/BossEnemy.cpp \
     core/BulletContainer.cpp \
     core/ButterflyEnemy.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     core/BaseMovement.h \
     core/BaseObject.h \
     core/BaseScene.h \
+    core/BonusBullet.h \
     core/BossEnemy.h \
     core/BulletContainer.h \
     core/ButterflyEnemy.h \

@@ -40,6 +40,10 @@ namespace STG {
         this->hero=hero;
     }
 
+    void EnemyFactory::setBonusContainer(BulletContainer *p){
+        bonusC=p;
+    }
+
     bool EnemyFactory::finished() const{
         return tS.atEnd();
     }
@@ -54,16 +58,25 @@ namespace STG {
                 tS>>name;
                 if(name=="Fairy"){
                     double x,y;
-                    tS>>x>>y;
-                    ec.addEnemy(new FairyEnemy(x,y,hero,generateMovement(tS)));
+                    int bonus;
+                    tS>>x>>y>>bonus;
+                    BaseEnemyObject* ptr=new FairyEnemy(x,y,hero,generateMovement(tS));
+                    if(bonus) ptr->setBonusContainer(bonusC);
+                    ec.addEnemy(ptr);
                 }else if(name=="Butterfly"){
                     double x,y;
-                    tS>>x>>y;
-                    ec.addEnemy(new ButterflyEnemy(x,y,hero,generateMovement(tS)));
+                    int bonus;
+                    tS>>x>>y>>bonus;
+                    BaseEnemyObject* ptr=new ButterflyEnemy(x,y,hero,generateMovement(tS));
+                    if(bonus) ptr->setBonusContainer(bonusC);
+                    ec.addEnemy(ptr);
                 }else if(name=="Boss"){
                     double x,y;
-                    tS>>x>>y;
-                    ec.addEnemy(new BossEnemy(x,y,hero,generateMovement(tS)));
+                    int bonus;
+                    tS>>x>>y>>bonus;
+                    BaseEnemyObject* ptr=new BossEnemy(x,y,hero,generateMovement(tS));
+                    if(bonus) ptr->setBonusContainer(bonusC);
+                    ec.addEnemy(ptr);
                 }
                 tS>>ctrl;
             }

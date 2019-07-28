@@ -16,10 +16,12 @@ namespace STG {
         QTextStream tS;
         int buffTime;
         BaseObject* hero;
+        BulletContainer* bonusC;//bonus container
         MovementContainer generateMovement(QTextStream& ss);
     public:
         EnemyFactory(const char* path);
         void setHero(BaseObject* hero);
+        void setBonusContainer(BulletContainer* p);
         bool finished() const;
         EnemyContainer generate(int time);
     };

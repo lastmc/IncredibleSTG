@@ -15,6 +15,7 @@ namespace STG {
         int shootInterval=40;
         MovementContainer mContainer;
         BaseObject* hero;//用于发射自机狙
+        BulletContainer* bonusC=nullptr;//存有bonus的Container//是一个辣鸡的代码复用呢
     public:
         BaseEnemyObject();
         BaseEnemyObject(BaseObject* hero);
@@ -24,6 +25,9 @@ namespace STG {
         int getLife() const;
         int getMoveTime() const;
         virtual bool moveFinished() const;
+        void setBonusContainer(BulletContainer* p);//set表示有bonus，不set没有
+        ~BaseEnemyObject() override;
+
     };
 
 }

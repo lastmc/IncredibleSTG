@@ -22,7 +22,7 @@ namespace STG {
         bool cleared;//是否通关
         bool exitFlag;//是否退出关卡
         HeroObject* hero;
-        BulletContainer selfBullets,enemyBullets;
+        BulletContainer selfBullets,enemyBullets,bonus;
         EnemyContainer enemys;
         EnemyFactory eFactory;
     public:

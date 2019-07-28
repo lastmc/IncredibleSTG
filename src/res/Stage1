@@ -1,17 +1,17 @@
 100
-# Fairy 100 100
+# Fairy 100 100 1
 * Direction 0.1 0 6000 !
-# Fairy 700 100
+# Fairy 700 100 0
 * Direction -0.1 0 6000 !
 End
 500
-# Fairy 100 100
+# Fairy 100 100 1
 * Direction 0.1 0 6000 !
-# Fairy 700 100
+# Fairy 700 100 0
 * Direction -0.1 0 6000 !
 End
 7000
-# Boss 100 100
+# Boss 100 100 1
 * Direction 0.1 0 4000
 * Direction -0.1 0 4000
 * Direction 0.1 0 4000
