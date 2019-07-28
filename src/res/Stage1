@@ -1,23 +1,236 @@
 100
-# Fairy 100 100 1
+# Fairy 70 100 1
 * Direction 0.1 0 6000 !
-# Fairy 700 100 0
+# Fairy 600 100 1
 * Direction -0.1 0 6000 !
 End
 500
-# Fairy 100 100 1
+# Fairy 70 100 0
 * Direction 0.1 0 6000 !
-# Fairy 700 100 0
+# Fairy 600 100 0
 * Direction -0.1 0 6000 !
 End
-7000
-# Boss 100 100 1
-* Direction 0.1 0 4000
+900
+# Fairy 70 100 0
+* Direction 0.1 0 6000 !
+# Fairy 600 100 0
+* Direction -0.1 0 6000 !
+End
+5000
+# Butterfly 335 -10 1
+* Direction 0 0.1 1200
+* Direction -0.1 0 1200
+* Direction 0.1 0 2400
+* Direction -0.1 0 1200
+* Circle 335 110 -500 0 -0.3 4000 !
+End
+12000
+# Butterfly 335 -10 1
+* Direction 0 0.1 1200
+* Direction -0.1 0 1200
+* Direction 0.1 0 2400
+* Direction -0.1 0 1200
+* Circle 335 110 500 0 0.3 4000 !
+End
+20000
+# Fairy 70 40 0
+* Circle 70 40 -400 340 -0.2 5000 !
+# Fairy 600 720 0
+* Circle 600 720 400 -340 -0.2 5000 !
+End
+21000
+# Fairy 70 40 0
+* Circle 70 40 -400 340 -0.2 5000 !
+# Fairy 600 720 0
+* Circle 600 720 400 -340 -0.2 5000 !
+End
+22000
+# Fairy 70 40 0
+* Circle 70 40 -400 340 -0.2 5000 !
+# Fairy 600 720 0
+* Circle 600 720 400 -340 -0.2 5000 !
+# Butterfly 335 -10 1
+* Direction 0 0.1 1600
+* Direction 0 0 100000 !
+End
+23000
+# Fairy 70 40 0
+* Circle 70 40 -400 340 -0.2 5000 !
+# Fairy 600 720 0
+* Circle 600 720 400 -340 -0.2 5000 !
+End
+24000
+# Fairy 70 40 0
+* Circle 70 40 -400 340 -0.2 5000 !
+# Fairy 600 720 0
+* Circle 600 720 400 -340 -0.2 5000 !
+End
+28000
+# Fairy 70 40 1
+* Direction 0.4 0.3 2000 !
+# Fairy 70 140 1
+* Direction 0.4 0.3 2000 !
+# Fairy 70 240 1
+* Direction 0.4 0.3 2000 !
+# Fairy 70 340 1
+* Direction 0.4 0.3 2000 !
+# Fairy 70 440 1
+* Direction 0.4 0.3 2000 !
+End
+29000
+# Fairy 600 40 1
+* Direction -0.4 0.3 2000 !
+# Fairy 600 140 1
+* Direction -0.4 0.3 2000 !
+# Fairy 600 240 1
+* Direction -0.4 0.3 2000 !
+# Fairy 600 340 1
+* Direction -0.4 0.3 2000 !
+# Fairy 600 440 1
+* Direction -0.4 0.3 2000 !
+End
+30000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+31000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+32000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+33000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+34000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+35000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+36000
+# Fairy 70 200 0
+* Direction 0.25 0 1060
+* Circle 335 200 0 200 -0.25 5020
+* Direction 0.25 0 1060 !
+End
+42000
+# Butterfly 335 0 1
+* Direction 0 0.1 1500
+* Direction 0 0 4000
+* Direction 0 -0.1 1500 !
+End
+44000
+# Butterfly 185 0 1
+* Direction 0 0.1 1500
+* Direction 0 0 4000
+* Direction 0 -0.1 1500 !
+# Butterfly 485 0 1
+* Direction 0 0.1 1500
+* Direction 0 0 4000
+* Direction 0 -0.1 1500 !
+End
+46000
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+46300
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+46600
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+46900
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+47200
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+47500
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+47800
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+48100
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+48400
+# Fairy 70 200 1
+* Circle 70 200 265 -400 0.25 3000 !
+End
+49600
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+49900
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+50200
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+50500
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+50800
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+51100
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+51400
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+51700
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+52000
+# Fairy 600 660 1
+* Circle 600 600 -265 400 0.25 3000 !
+End
+57000
+# Boss 335 -10 1
+* Direction 0 0.4 300
+* Direction 0.1 0 2000
 * Direction -0.1 0 4000
 * Direction 0.1 0 4000
 * Direction -0.1 0 4000
-* Direction 0.1 0 4000
-* Direction -0.1 0 4000
-* Direction 0.1 0 4000
-* Direction -0.1 0 4000 !
+* Direction 0.15 0 2660
+* Direction -0.15 0 2660
+* Direction 0.2 0 2000
+* Direction -0.2 0 2000
+* Direction 0.2 0 2000
+* Direction -0.2 0 1000
+* Direction 0 0 10000000 !
 End

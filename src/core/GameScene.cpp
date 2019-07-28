@@ -10,8 +10,7 @@ namespace STG {
     GameScene::GameScene()
         :lx(80),ly(40),rx(590),ry(720),time(0),
           selfBullets(BulletContainer(lx,ly,rx,ry)),enemyBullets(BulletContainer(lx,ly,rx,ry)),bonus(BulletContainer(lx,ly,rx,ry)),
-          enemys(EnemyContainer()),
-          eFactory(":/gen/Stage1"){
+          enemys(EnemyContainer()),eFactory(":/gen/Stage1"){
         hero=nullptr;
         keyUp=false;
         keyRight=false;
@@ -55,6 +54,7 @@ namespace STG {
         painter->drawText(QPoint(700,260),keyRight?"Right":"");
         painter->drawText(QPoint(700,280),keyZ?"Shoot":"");
         painter->drawText(QPoint(700,320),keyShift?"Low Speed Mode":"");
+        painter->drawText(QPoint(700,400),hero->getGodTime()?"God Time "+QString::number(hero->getGodTime()):"");
         painter->drawText(QPoint(700,500),gamePaused?"Game Paused":"");
         painter->drawText(QPoint(700,520),cleared?"Stage Clear! Press Esc to exit":"");
 
@@ -153,6 +153,8 @@ namespace STG {
 
         time+=milliInterval;
 
+        recorder.writeFrame(time,keyboardRecord(keyUp,keyDown,keyLeft,keyRight,keyShift,keyZ));
+
         hero->lowSpeed(keyShift);
         hero->setVx(-(keyShift?0.15:0.3)*keyLeft+(keyShift?0.15:0.3)*keyRight);
         hero->setVy(-(keyShift?0.15:0.3)*keyUp+(keyShift?0.15:0.3)*keyDown);
@@ -189,14 +191,15 @@ namespace STG {
         if(exitFlag) return StageClear;
 
         if(enemyBullets.isHitBy(*hero) || enemys.isHitBy(*hero)){
-            hero->hit();
-            if(hero->alive()){
-                selfBullets=BulletContainer();
-                enemyBullets=BulletContainer();
-                hero->setX(300);
-                hero->setY(600);
-            }else{
-                return BaseScene::GameOver;
+            if(hero->hit()){
+                if(hero->alive()){
+                    selfBullets=BulletContainer();
+                    enemyBullets=BulletContainer();
+                    hero->setX(300);
+                    hero->setY(600);
+                }else{
+                    return BaseScene::GameOver;
+                }
             }
         }
         return BaseScene::Gaming;
@@ -207,6 +210,7 @@ namespace STG {
     }
 
     GameScene::~GameScene(){
+        recorder.writeToFile();
         delete hero;
     }
 }

@@ -9,11 +9,12 @@
 #include "BaseEnemyObject.h"
 #include "EnemyContainer.h"
 #include "EnemyFactory.h"
+#include "Recorder.h"
 
 namespace STG {
 
     class GameScene:public BaseScene{
-    private:
+    protected:
         bool keyUp,keyDown,keyRight,keyLeft,keyZ,keyShift,keyX;
         int lx,ly,rx,ry;//边界
         int time;
@@ -25,6 +26,7 @@ namespace STG {
         BulletContainer selfBullets,enemyBullets,bonus;
         EnemyContainer enemys;
         EnemyFactory eFactory;
+        Recorder recorder;
     public:
         GameScene();
         void initHero(HeroObject* h);

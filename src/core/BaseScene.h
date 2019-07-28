@@ -15,6 +15,7 @@ namespace STG {
           Retry,//从头开始，回到第一关
           MainMenu,//回主菜单
           GameStart,//从第一关开始
+          Replay,//重播
           ExitGame//退出游戏
         };
         virtual void paint(QPainter* painter)=0;

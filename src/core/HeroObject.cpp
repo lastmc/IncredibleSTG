@@ -30,8 +30,13 @@ namespace STG {
         lowSpeedMode=enable;
     }
 
-    void HeroObject::hit(){
-        life--;
+    bool HeroObject::hit(){
+        if(!godTime){
+            life--;
+            godTime=2000;
+            return true;
+        }
+        return false;
     }
 
     BulletContainer HeroObject::shoot(){
@@ -47,6 +52,15 @@ namespace STG {
             bc.addBullet(new DirectionBullet(x(),y(),0.1,-0.5,3));
         }
         return bc;
+    }
+
+    void HeroObject::move(int time){
+        if(godTime) godTime-=time;
+        BaseObject::move(time);
+    }
+
+    int HeroObject::getGodTime() const{
+        return godTime;
     }
 
 }

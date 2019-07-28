@@ -11,6 +11,7 @@ namespace STG {
         bool enter=false;
         enum Selection{
             StartGame,
+            ReplayGame,
             ExitGame,
             End//用于mod End得到选项
           };

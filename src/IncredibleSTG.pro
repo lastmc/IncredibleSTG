@@ -44,6 +44,8 @@ SOURCES += \
     core/HeroObject.cpp \
     core/MainMenuScene.cpp \
     core/MovementContainer.cpp \
+    core/Recorder.cpp \
+    core/ReplayScene.cpp \
     core/StageClearScene.cpp \
     core/TestEnemy.cpp \
         gui/gamewidget.cpp \
@@ -71,6 +73,8 @@ HEADERS += \
     core/HeroObject.h \
     core/MainMenuScene.h \
     core/MovementContainer.h \
+    core/Recorder.h \
+    core/ReplayScene.h \
     core/StageClearScene.h \
     core/TestEnemy.h \
     core/ToolFunc.h \

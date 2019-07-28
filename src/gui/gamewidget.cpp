@@ -7,6 +7,7 @@
 #include "../core/GameScene.h"
 #include "../core/GameOverScene.h"
 #include "../core/StageClearScene.h"
+#include "../core/ReplayScene.h"
 
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
@@ -36,6 +37,10 @@ GameWidget::~GameWidget()
 
 void GameWidget::updateScene(){
     switch(scene->update(10)){
+    case STG::BaseScene::Replay:
+        delete scene;
+        scene=new STG::ReplayScene();
+        break;
     case STG::BaseScene::GameStart:
     case STG::BaseScene::Retry:
         delete scene;
