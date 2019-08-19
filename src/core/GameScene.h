@@ -36,6 +36,7 @@ namespace STG {
         void paint(QPainter* painter) override;
         void keyPress(int key) override;
         void keyRelease(int key) override;
+        virtual GameResult gameLogic(int milliInterval);
         GameResult update(int milliInterval) override;
 
         virtual ~GameScene() override;

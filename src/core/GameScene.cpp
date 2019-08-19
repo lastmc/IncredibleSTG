@@ -146,14 +146,9 @@ namespace STG {
             break;
         }
     }
-
-    BaseScene::GameResult GameScene::update(int milliInterval){
+    BaseScene::GameResult GameScene::gameLogic(int milliInterval){
         //Main Logic
-        if(gamePaused) return GamePaused;
-
         time+=milliInterval;
-
-        recorder.writeFrame(time,keyboardRecord(keyUp,keyDown,keyLeft,keyRight,keyShift,keyZ));
 
         hero->lowSpeed(keyShift);
         hero->setVx(-(keyShift?0.15:0.3)*keyLeft+(keyShift?0.15:0.3)*keyRight);
@@ -203,6 +198,16 @@ namespace STG {
             }
         }
         return BaseScene::Gaming;
+    }
+
+    BaseScene::GameResult GameScene::update(int milliInterval){
+        //Main Logic
+        if(gamePaused) return GamePaused;
+
+        recorder.writeFrame(time,keyboardRecord(keyUp,keyDown,keyLeft,keyRight,keyShift,keyZ));
+
+        return gameLogic(milliInterval);
+
     }
 
     int GameScene::getScore(){
