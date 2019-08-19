@@ -25,6 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    core/AIPlayer.cpp \
+    core/AIScene.cpp \
     core/BaseEnemyObject.cpp \
     core/BaseMovement.cpp \
     core/BaseObject.cpp \
@@ -52,6 +54,8 @@ SOURCES += \
         main.cpp \
 
 HEADERS += \
+    core/AIPlayer.h \
+    core/AIScene.h \
     core/BaseBullet.h \
     core/BaseEnemyObject.h \
     core/BaseMovement.h \
@@ -75,6 +79,7 @@ HEADERS += \
     core/MovementContainer.h \
     core/Recorder.h \
     core/ReplayScene.h \
+    core/SceneInfo.h \
     core/StageClearScene.h \
     core/TestEnemy.h \
     core/ToolFunc.h \

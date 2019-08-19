@@ -12,6 +12,7 @@ namespace STG {
         enum Selection{
             StartGame,
             ReplayGame,
+            AIGame,
             ExitGame,
             End//用于mod End得到选项
           };

@@ -16,6 +16,7 @@ namespace STG {
           MainMenu,//回主菜单
           GameStart,//从第一关开始
           Replay,//重播
+          AIStart,//开始AI操控
           ExitGame//退出游戏
         };
         virtual void paint(QPainter* painter)=0;

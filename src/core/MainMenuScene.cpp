@@ -14,7 +14,8 @@ namespace STG {
         painter->setFont(f);
         painter->drawText(QPoint(730,570),(select==MainMenuScene::StartGame)?"-> Start Game":"   Start Game");
         painter->drawText(QPoint(730,600),(select==MainMenuScene::ReplayGame)?"-> Replay Game":"   Replay Game");
-        painter->drawText(QPoint(730,630),(select==MainMenuScene::ExitGame)?"-> Exit Game":"   Exit Game");
+        painter->drawText(QPoint(730,630),(select==MainMenuScene::AIGame)?"-> AI Game":"   AI Game");
+        painter->drawText(QPoint(730,660),(select==MainMenuScene::ExitGame)?"-> Exit Game":"   Exit Game");
     }
 
     void MainMenuScene::keyPress(int key){
@@ -47,6 +48,8 @@ namespace STG {
                 return BaseScene::ExitGame;
             case MainMenuScene::ReplayGame:
                 return BaseScene::Replay;
+            case MainMenuScene::AIGame:
+                return BaseScene::AIStart;
             default:
                 break;
             }
